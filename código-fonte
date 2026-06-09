@@ -1,0 +1,103 @@
+# Global Solution Soluções em Energias Renováveis e Sustentáveis
+# ECOSPACE ENERGY
+# Sistema Inteligente de Energia
+
+
+sistemas = [
+    {
+        "nome": "Painel Solar Principal",
+        "solar": 80,
+        "bateria": 90,
+        "temperatura": 45,
+        "comunicacao": True
+    },
+    {
+        "nome": "Módulo Científico",
+        "solar": 30,
+        "bateria": 55,
+        "temperatura": 60,
+        "comunicacao": True
+    },
+    {
+        "nome": "Central de Controle",
+        "solar": 15,
+        "bateria": 18,
+        "temperatura": 75,
+        "comunicacao": False
+    },
+    {
+        "nome": "Módulo de Suporte", 
+        "solar": 40,
+        "bateria": 25,
+        "temperatura": 50,
+        "comunicacao": True
+    }
+]
+
+
+print("MONITORAMENTO ENERGÉTICO DA MISSÃO ESPACIAL")
+print("=" * 60)
+
+for sistema in sistemas:
+
+    print(f"Sistema: {sistema['nome']}")
+    print(f"Produção Solar: {sistema['solar']}%")
+    print(f"Nível da Bateria: {sistema['bateria']}%")
+    print(f"Temperatura: {sistema['temperatura']}°C")
+
+    if sistema["comunicacao"]:
+        print("Comunicação: ATIVA")
+    else:
+        print("Comunicação: INATIVA")
+
+    alertas = []
+
+    # Escolha da fonte de energia
+    if sistema["solar"] >= 50:
+        fonte = "PAINÉIS SOLARES"
+    elif sistema["bateria"] >= 20:
+        fonte = "BATERIAS"
+    else:
+        fonte = "GERADOR DE EMERGÊNCIA"
+
+    print(f"Fonte de Energia Utilizada: {fonte}")
+
+    # Verificação de alertas
+    if sistema["temperatura"] > 70:
+        alertas.append("Superaquecimento detectado")
+
+    if sistema["bateria"] < 20:
+        alertas.append("Energia crítica")
+
+    if not sistema["comunicacao"]:
+        alertas.append("Falha de comunicação")
+
+    if sistema["solar"] < 20 and sistema["bateria"] < 20:
+        alertas.append("Ativação do gerador de emergência")
+
+    # Exibição dos alertas
+    if len(alertas) == 0:
+        print("Status: OPERANDO NORMALMENTE")
+        print()
+    else:
+        print("ALERTAS:")
+
+        for alerta in alertas:
+            print("-", alerta)
+
+        print("Ações Automáticas:")
+
+        if sistema["temperatura"] > 70:
+            print("• Acionar sistema de resfriamento")
+
+        if sistema["bateria"] < 20:
+            print("• Priorizar recarga energética")
+
+        if not sistema["comunicacao"]:
+            print("• Reiniciar sistema de comunicação")
+
+        if sistema["solar"] < 20 and sistema["bateria"] < 20:
+            print("• Utilizar gerador de emergência")
+            print()
+
+print("Missão analisada com sucesso.")
